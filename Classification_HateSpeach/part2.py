@@ -86,3 +86,16 @@ sample = 'wonderfl :-)  when are you coming for #party'
 tweet_tokenize = TweetTokenizer(preserve_case=True)
 tweet_tokenize.tokenize(sample)
 
+
+#tokenize the tweets in the dataframe using TweetTokenizer
+tokenizer = TweetTokenizer(preserve_case=True)
+df['tweet'] = df['tweet'].apply(tokenizer.tokenize)
+
+#Remove Stopwords
+stop_words = stopwords.words('english')
+
+#add additional stop words to be removed from the text
+additional_list = ['amp','rt','u',"can't",'ur']
+
+for words in additional_list:
+    stop_words.append(words)
