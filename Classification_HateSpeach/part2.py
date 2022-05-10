@@ -63,5 +63,26 @@ df['tweet'] = df['tweet'].apply(simplify)
 
 
   
-  
+#Remove user handles
+#test on a sample string
+sample = "and @user1 i would like you to discuss with @user2 and then with @username3"
+pattern = re.compile(r'@\w+')
+re.findall(pattern,sample)
+
+##remove all the user handles --> strings starting with @
+df['tweet'].replace(r'@\w+','',regex=True,inplace=True)
+
+#remove the urls
+
+#test on a sample 
+sample = "https://www.machinelearing.com prakhar and https://www.simple.com"
+pattern = re.compile(r'http\S+')
+re.findall(pattern,sample)
+
+df['tweet'].replace(r'http\S+','',regex=True,inplace=True)
+
+#test on a sample text
+sample = 'wonderfl :-)  when are you coming for #party'
+tweet_tokenize = TweetTokenizer(preserve_case=True)
+tweet_tokenize.tokenize(sample)
 
