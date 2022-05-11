@@ -121,4 +121,28 @@ txtblob = TextBlob(sample)
 corrected_text = txtblob.correct()
 print(corrected_text)
 
+#textblob expect a string to be passed and not a list of strings
+from textblob import TextBlob
+
+def spell_check(text):
+    '''Function to do spelling correction using '''
+    txtblob = TextBlob(text)
+    corrected_text = txtblob.correct()
+    return corrected_text
+
+#Remove # symbols while retaining the text
+#try tremoving # symbols from a sample text
+sample = '#winner #machine i am learning'
+pattern = re.compile(r'#')
+re.sub(pattern,'',sample)
+
+
+def remove_hashsymbols(text):
+    '''Function to remove the hashtag symbol from the text'''
+    pattern = re.compile(r'#')
+    text = ' '.join(text)
+    clean_text = re.sub(pattern,'',text)
+    return tokenizer.tokenize(clean_text)
+
+
 
