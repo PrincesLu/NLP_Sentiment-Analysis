@@ -99,3 +99,26 @@ additional_list = ['amp','rt','u',"can't",'ur']
 
 for words in additional_list:
     stop_words.append(words)
+
+stop_words[-10:]
+
+#remove stop words
+def remove_stopwords(text):
+    '''Function to remove the stop words from the text corpus'''
+    clean_text = [word for word in text if not word in stop_words]
+    return clean_text 
+
+#remove the stop words from the tweets
+df['tweet'] = df['tweet'].apply(remove_stopwords)
+
+df['tweet'].head()
+
+#Spelling corrections
+#apply spelling correction on a sample text
+from textblob import TextBlob
+sample = 'amazng man you did it finallyy'
+txtblob = TextBlob(sample)
+corrected_text = txtblob.correct()
+print(corrected_text)
+
+
