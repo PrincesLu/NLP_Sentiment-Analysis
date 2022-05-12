@@ -162,3 +162,26 @@ def rem_shortwords(text):
 df['tweet'] = df['tweet'].apply(rem_shortwords)
 df['tweet'] = df['tweet'].apply(tokenizer.tokenize)
 
+#Remove digits
+def rem_digits(text):
+    '''Function to remove the digits from the list of strings'''
+    no_digits = []
+    for word in text:
+        no_digits.append(re.sub(r'\d','',word))
+    return ' '.join(no_digits) 
+
+df['tweet'] = df['tweet'].apply(rem_digits)
+df['tweet'] = df['tweet'].apply(tokenizer.tokenize)
+
+
+
+#Remove special characters
+def rem_nonalpha(text):
+    '''Function to remove the non-alphanumeric characters from the text'''
+    text = [word for word in text if word.isalpha()]
+    return text
+
+#remove the non alpha numeric characters from the tweet tokens
+df['tweet'] = df['tweet'].apply(rem_nonalpha)
+
+
