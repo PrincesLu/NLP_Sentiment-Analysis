@@ -144,5 +144,21 @@ def remove_hashsymbols(text):
     clean_text = re.sub(pattern,'',text)
     return tokenizer.tokenize(clean_text)
 
+df['tweet'] = df['tweet'].apply(remove_hashsymbols)
 
+#Remove single and double length characters
+def rem_shortwords(text):
+    '''Function to remove the short words of length 1 and 2 characters'''
+    '''Arguments: 
+       text: string
+       returns: string without containing words of length 1 and 2'''
+    lengths = [1,2]
+    new_text = ' '.join(text)
+    for word in text:
+        text = [word for word in tokenizer.tokenize(new_text) if not len(word) in lengths]
+        
+    return new_text       
+
+df['tweet'] = df['tweet'].apply(rem_shortwords)
+df['tweet'] = df['tweet'].apply(tokenizer.tokenize)
 
